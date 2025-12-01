@@ -83,7 +83,7 @@
                 </div>
                 <label>
                     Količina
-                    <input type="number" id="kolicina" value="1" min="1" max="5">
+                    <input type="number" id="kolicina" value="1" min="1" max="5" oninput="azurirajCijenu()">
                 </label>
                 <label>
                     Ime i prezime
@@ -166,6 +166,8 @@
     </footer>
 
     <script>
+        const CIJENA_PO_KOMADU = 20;
+
         function odaberiVelicinu(element, vrijednost) {
             // Makni klasu 'selected' sa svih kockica
             document.querySelectorAll('.size-box').forEach(box => {
@@ -178,6 +180,15 @@
             // Ažuriraj skrivenu vrijednost koju šaljemo serveru
             document.getElementById('velicina').value = vrijednost;
         }
+
+        function azurirajCijenu() {
+            const kolicina = parseInt(document.getElementById('kolicina').value) || 1;
+            const ukupnaCijena = CIJENA_PO_KOMADU * kolicina;
+            document.getElementById('btnNaruci').textContent = `NARUČI (${ukupnaCijena} €)`;
+        }
+
+        // Pozovi funkciju na početku da se prikaže početna cijena
+        document.addEventListener('DOMContentLoaded', azurirajCijenu);
     </script>
     <script src="app.js"></script>
 </body>
