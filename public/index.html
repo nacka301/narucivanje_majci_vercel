@@ -92,18 +92,27 @@
                         <div class="size-box" onclick="odaberiVelicinu(this, 'XXL')">XXL</div>
                     </div>
                 </div>
-                <label>
-                    Količina
-                    <input type="number" id="kolicina" value="1" min="1" max="5" oninput="azurirajCijenu()">
-                </label>
+                <div>
+                    <label style="font-weight: 600; color: #475569; margin-bottom: 10px; display: block;">
+                        Količina
+                    </label>
+                    <div class="quantity-wrapper">
+                        <button type="button" class="qty-btn" onclick="promijeniKolicinu(-1)">−</button>
+                        <input type="number" id="kolicina" value="1" readonly>
+                        <button type="button" class="qty-btn" onclick="promijeniKolicinu(1)">+</button>
+                    </div>
+                </div>
                 
                 <div class="span-2">
-                    <button type="button" id="btnDodaj" class="btn-dodaj" onclick="dodajUListu()">
-                        + DODAJ MAJICU
+                    <button type="button" id="btnDodaj" class="btn-dodaj-u-kosaricu" onclick="dodajUListu()">
+                        + DODAJ U NARUDŽBU
                     </button>
 
-                    <div id="prikazKosarice" class="kosarica-lista" style="display:none;">
-                        <h4>Tvoja narudžba:</h4>
+                    <div id="prikazKosarice" class="kosarica-container" style="display:none;">
+                        <div class="kosarica-header">
+                            <span>Tvoja Košarica</span>
+                            <span class="kosarica-count" id="brojStavki">0</span>
+                        </div>
                         <div id="listaStavki"></div>
                         <input type="hidden" id="konacnaNarudzba" value="">
                     </div>
@@ -219,6 +228,17 @@
             document.getElementById('velicina').value = vrijednost;
         }
 
+        function promijeniKolicinu(broj) {
+            const input = document.getElementById('kolicina');
+            let trenutna = parseInt(input.value) || 1;
+            let nova = trenutna + broj;
+            
+            if (nova < 1) nova = 1;
+            if (nova > 10) nova = 10;
+            
+            input.value = nova;
+        }
+
         function dodajUListu() {
             // 1. Pokupi podatke
             const model = document.getElementById('model').value;
@@ -234,7 +254,8 @@
             // 2. Dodaj u niz
             const stavka = {
                 id: Date.now(),
-                opis: `${model} (${velicina})`,
+                model: model,
+                velicina: velicina,
                 kolicina: parseInt(kolicina)
             };
             kosarica.push(stavka);
@@ -244,7 +265,6 @@
             
             // 4. Resetuj količinu na 1
             document.getElementById('kolicina').value = 1;
-            azurirajCijenu();
         }
 
         function obrisiStavku(id) {
@@ -255,6 +275,7 @@
         function osvjeziPrikaz() {
             const divLista = document.getElementById('listaStavki');
             const container = document.getElementById('prikazKosarice');
+            const brojac = document.getElementById('brojStavki');
             
             divLista.innerHTML = "";
 
@@ -265,19 +286,23 @@
             }
             
             container.style.display = 'block';
+            brojac.innerText = kosarica.length;
 
             // Generiraj HTML za svaku stavku
             kosarica.forEach(s => {
                 divLista.innerHTML += `
-                    <div class="stavka">
-                        <span>${s.opis} x${s.kolicina}</span>
-                        <span class="btn-brisi" onclick="obrisiStavku(${s.id})">✕</span>
+                    <div class="stavka-kartica">
+                        <div class="stavka-info">
+                            <span style="display:block; font-weight:bold;">${s.model}</span>
+                            <span style="font-size:13px; color:#666;">Veličina: ${s.velicina} | Komada: ${s.kolicina}</span>
+                        </div>
+                        <div class="btn-brisi" onclick="obrisiStavku(${s.id})">✕</div>
                     </div>
                 `;
             });
 
             // PRIPREMA ZA SERVER: Spoji sve u jedan string
-            const tekstZaServer = kosarica.map(s => `${s.opis} x${s.kolicina}`).join(", ");
+            const tekstZaServer = kosarica.map(s => `${s.model} (${s.velicina}) x${s.kolicina}`).join(", ");
             document.getElementById('model').value = tekstZaServer;
             
             // Ažuriraj ukupnu cijenu

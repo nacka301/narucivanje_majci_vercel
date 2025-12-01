@@ -395,52 +395,126 @@ input:focus, select:focus {
     color: var(--accent);
 }
 
-/* Gumb za dodavanje stavke */
-.btn-dodaj {
-    width: 100%;
-    padding: 12px;
-    background-color: #334155;
-    color: white;
-    font-weight: bold;
-    border: 1px dashed #94a3b8;
+/* --- KOLIČINA (STEPPER) --- */
+.quantity-wrapper {
+    display: flex;
+    align-items: center;
+    border: 2px solid #e2e8f0;
     border-radius: 8px;
-    margin-bottom: 10px;
+    overflow: hidden;
+    width: 140px;
+}
+
+.qty-btn {
+    background-color: #f1f5f9;
+    border: none;
+    width: 40px;
+    height: 45px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
-.btn-dodaj:hover {
-    background-color: #1e293b;
-    border-color: #fff;
-}
-
-/* Izgled liste */
-.kosarica-lista {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.kosarica-lista h4 {
-    margin: 0 0 10px 0;
+.qty-btn:hover {
+    background-color: #e2e8f0;
     color: var(--accent);
+}
+
+#kolicina {
+    border: none;
+    text-align: center;
+    width: 60px;
+    font-size: 18px;
+    font-weight: bold;
+    -moz-appearance: textfield;
+    background: white;
+    padding: 0;
+}
+
+#kolicina::-webkit-outer-spin-button,
+#kolicina::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#kolicina:focus { 
+    outline: none; 
+    box-shadow: none; 
+}
+
+/* --- GUMB DODAJ U KOŠARICU --- */
+.btn-dodaj-u-kosaricu {
+    width: 100%;
+    padding: 15px;
+    margin: 20px 0;
+    background-color: #1e293b;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-dodaj-u-kosaricu:hover {
+    background-color: #0f172a;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* --- DIZAJN KOŠARICE --- */
+.kosarica-container {
+    background: #fff1f2;
+    border: 1px solid #fecaca;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    animation: fadeIn 0.3s ease;
+}
+
+.kosarica-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #991b1b;
     text-transform: uppercase;
     font-size: 14px;
 }
 
-/* Jedna stavka u listi */
-.stavka {
+.kosarica-count {
+    background: var(--accent);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+/* Jedna stavka u košarici */
+.stavka-kartica {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: white;
-    padding: 10px;
-    border-radius: 6px;
+    padding: 12px 15px;
+    border-radius: 8px;
     margin-bottom: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--accent);
+}
+
+.stavka-info {
+    font-size: 15px;
+    color: #333;
     font-weight: 500;
 }
 
@@ -448,8 +522,19 @@ input:focus, select:focus {
 .btn-brisi {
     color: #ef4444;
     cursor: pointer;
-    font-weight: bold;
+    font-size: 18px;
     padding: 5px;
+    transition: 0.2s;
+}
+
+.btn-brisi:hover { 
+    color: var(--accent); 
+    transform: scale(1.2); 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .btn {
