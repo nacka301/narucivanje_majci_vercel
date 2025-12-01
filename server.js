@@ -165,7 +165,7 @@ app.post('/api/naruci', async (req, res) => {
     try {
         const payload = {
             ...req.body,
-            model: req.body.model || 'Majica #1 – Black Edition',
+            model: req.body.model || 'Ako Ne Znaš Što Je Bilo',
             status: STATUSI.includes(req.body.status) ? req.body.status : 'zaprimljeno',
             kolicina: Number(req.body.kolicina) || 1,
             placeno: Boolean(req.body.placeno),

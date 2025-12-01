@@ -248,6 +248,13 @@ p {
     border-radius: 12px;
     border: 1px solid var(--border);
     object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover .card__image {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
     aspect-ratio: 4 / 3;
 }
 
