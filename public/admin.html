@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(180deg, #f5f6f8 0%, #f1f1f6 100%);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+        }
+
+        .admin-shell {
+            width: min(1200px, 100%);
+            margin: 0 auto;
+            padding: 4rem clamp(1.25rem, 4vw, 4rem);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .admin-card,
+        .order-card {
+            background: var(--panel);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            border-radius: 24px;
+            padding: clamp(1.5rem, 2vw, 2.5rem);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        }
+
+        .admin-card h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        #loginDiv {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        #adminPass {
+            flex: 1;
+            min-width: 220px;
+            padding: 0.95rem 1.1rem;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            font-size: 1rem;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .cta {
+            padding: 0.95rem 1.8rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .admin-dashboard {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .toolbar select,
+        .toolbar button {
+            padding: 0.75rem 1rem;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .toolbar button {
+            background: var(--text);
+            color: #fff;
+        }
+
+        .stat-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .chip {
+            flex: 1;
+            min-width: 160px;
+            padding: 1rem;
+            border-radius: 18px;
+            background: rgba(15, 23, 42, 0.035);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .chip span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .chip small {
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--muted);
+        }
+
+        .orders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .order-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .order-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .order-head h3 {
+            margin: 0;
+            letter-spacing: 0.04em;
+        }
+
+        .order-meta {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .status--zaprimljeno { background: rgba(59, 130, 246, 0.12); color: #1d4ed8; }
+        .status--priprema { background: rgba(250, 204, 21, 0.18); color: #854d0e; }
+        .status--poslano { background: rgba(16, 185, 129, 0.15); color: #047857; }
+        .status--isporuceno { background: rgba(15, 157, 88, 0.15); color: #0f9d58; }
+
+        .order-body {
+            display: grid;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .order-body span {
+            display: block;
+        }
+
+        .order-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .order-actions select {
+            flex: 1;
+            min-width: 140px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 0.55rem 0.75rem;
+        }
+
+        .pill-btn {
+            border-radius: 999px;
+            padding: 0.55rem 1.1rem;
+            border: 1px solid transparent;
+            background: rgba(99, 102, 241, 0.1);
+            color: #312e81;
+        }
+
+        .pill-btn.success {
+            background: rgba(15, 157, 88, 0.15);
+            color: #0f9d58;
+        }
+
+        .pill-btn.ghost {
+            background: rgba(15, 23, 42, 0.05);
+            color: var(--text);
+        }
+
+        .pill-btn.danger {
+            background: rgba(185, 28, 28, 0.12);
+            color: #991b1b;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 18px;
+            border: 1px dashed var(--border);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-shell">
+        <div class="admin-card" id="loginSection">
+            <h1>Admin panel</h1>
+            <p>Unesi admin lozinku i upravljaj svim narudžbama s jednog mjesta.</p>
+            <div id="loginDiv">
+                <input type="password" id="adminPass" placeholder="Unesi admin lozinku">
+                <button class="cta" onclick="ucitajPodatke()">Prijava</button>
+            </div>
+        </div>
+
+        <div class="admin-dashboard hidden" id="dashboard">
+            <div class="admin-card">
+                <div class="toolbar">
+                    <div>
+                        <h2>Pregled narudžbi</h2>
+                        <p class="order-meta">Brzo filtriraj, označi kao poslano ili evidentiraj uplatu.</p>
+                    </div>
+                    <div class="toolbar-actions">
+                        <select id="statusFilter">
+                            <option value="sve">Sve narudžbe</option>
+                            <option value="zaprimljeno">Zaprimljeno</option>
+                            <option value="priprema">U pripremi</option>
+                            <option value="poslano">Poslano</option>
+                            <option value="isporuceno">Isporučeno</option>
+                        </select>
+                        <button id="refreshBtn">Osvježi</button>
+                        <button id="logoutBtn" class="pill-btn ghost" style="margin-left:0.25rem">Odjavi se</button>
+                    </div>
+                </div>
+
+                <div class="stat-chips">
+                    <div class="chip"><span id="statTotal">0</span><small>Ukupno</small></div>
+                    <div class="chip"><span id="statShipped">0</span><small>Poslano</small></div>
+                    <div class="chip"><span id="statPaid">0</span><small>Plaćeno</small></div>
+                </div>
+            </div>
+
+            <div class="orders-grid" id="ordersGrid"></div>
+            <div class="empty-state hidden" id="emptyState">Nema narudžbi za prikaz.</div>
+        </div>
+    </div>
+
+    <script>
+        const STATUS_LABELS = {
+            zaprimljeno: 'Zaprimljeno',
+            priprema: 'U pripremi',
+            poslano: 'Poslano',
+            isporuceno: 'Isporučeno'
+        };
+
+        let adminPassword = '';
+        let narudzbe = [];
+
+        const ordersGrid = document.getElementById('ordersGrid');
+        const emptyState = document.getElementById('emptyState');
+        const statusFilter = document.getElementById('statusFilter');
+        const loginSection = document.getElementById('loginSection');
+        const dashboard = document.getElementById('dashboard');
+
+        dashboard?.classList.add('hidden');
+
+        statusFilter?.addEventListener('change', () => renderNarudzbe());
+        document.getElementById('refreshBtn')?.addEventListener('click', () => osvjeziNarudzbe(true));
+        document.getElementById('logoutBtn')?.addEventListener('click', odjava);
+
+        const escapeHtml = (value = '') => value
+            .toString()
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+
+        async function ucitajPodatke() {
+            adminPassword = document.getElementById('adminPass').value.trim();
+            if (!adminPassword) {
+                alert('Unesi lozinku.');
+                return;
+            }
+            await osvjeziNarudzbe();
+        }
+
+        async function osvjeziNarudzbe(showToast) {
+            try {
+                const res = await fetch('/api/admin/narudbe', {
+                    headers: { 'x-admin-pass': adminPassword }
+                });
+
+                if (res.status === 403) {
+                    alert('Kriva lozinka!');
+                    return;
+                }
+
+                narudzbe = await res.json();
+                loginSection?.classList.add('hidden');
+                dashboard?.classList.remove('hidden');
+                azurirajStatuse();
+                renderNarudzbe();
+                if (showToast) alert('Podaci osvježeni.');
+            } catch (err) {
+                console.error(err);
+                alert('Neuspjelo dohvaćanje narudžbi.');
+            }
+        }
+
+        function azurirajStatuse() {
+            const ukupno = narudzbe.length;
+            const poslano = narudzbe.filter(n => n.status === 'poslano' || n.status === 'isporuceno').length;
+            const placeno = narudzbe.filter(n => n.placeno).length;
+            document.getElementById('statTotal').textContent = ukupno;
+            document.getElementById('statShipped').textContent = poslano;
+            document.getElementById('statPaid').textContent = placeno;
+        }
+
+        function renderNarudzbe() {
+            const filter = statusFilter.value;
+            const prikaz = filter === 'sve' ? narudzbe : narudzbe.filter(n => n.status === filter);
+
+            if (!prikaz.length) {
+                ordersGrid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            ordersGrid.innerHTML = prikaz.map((n) => generirajKarticu(n)).join('');
+        }
+
+        function generirajKarticu(n) {
+            const statusKlasa = `status--${n.status || 'zaprimljeno'}`;
+            const datum = new Date(n.datum).toLocaleString('hr-HR');
+            const modelInfo = `${escapeHtml(n.model || 'Majica')} / ${escapeHtml(n.velicina || '-')}`;
+            const kolicina = n.kolicina ? `x${n.kolicina}` : '';
+
+            return `
+                <article class="order-card" data-id="${n._id}">
+                    <div class="order-head">
+                        <div>
+                            <h3>${escapeHtml(n.ime_prezime)}</h3>
+                            <span class="order-meta">${escapeHtml(n.grad || '')} • ${datum}</span>
+                        </div>
+                        <span class="badge ${statusKlasa}">${STATUS_LABELS[n.status] || 'Zaprimljeno'}</span>
+                    </div>
+                    <div class="order-body">
+                        <span><strong>Adresa:</strong> ${escapeHtml(`${n.adresa || ''}${n.grad ? ', ' + n.grad : ''}`)}</span>
+                        <span><strong>Kontakt:</strong> ${escapeHtml(n.telefon)} · ${escapeHtml(n.email || '—')}</span>
+                        <span><strong>Model:</strong> ${modelInfo} ${kolicina}</span>
+                    </div>
+                    <div class="order-actions">
+                        <select onchange="promijeniStatus('${n._id}', this.value)">
+                            ${Object.entries(STATUS_LABELS).map(([value, label]) => `
+                                <option value="${value}" ${n.status === value ? 'selected' : ''}>${label}</option>
+                            `).join('')}
+                        </select>
+                        <button class="pill-btn ${n.placeno ? 'success' : 'ghost'}" onclick="togglePlacanje('${n._id}', ${!n.placeno})">
+                            ${n.placeno ? 'Plaćeno' : 'Čeka uplatu'}
+                        </button>
+                        <button class="pill-btn ghost" onclick="urediNapomenu('${n._id}')">Bilješka</button>
+                        <button class="pill-btn danger" onclick="obrisiNarudzbu('${n._id}')">Obriši</button>
+                    </div>
+                </article>`;
+        }
+
+        async function promijeniStatus(id, status) {
+            await posaljiPatch(id, { status });
+        }
+
+        async function togglePlacanje(id, placeno) {
+            await posaljiPatch(id, { placeno });
+        }
+
+        function urediNapomenu(id) {
+            const nar = narudzbe.find(n => n._id === id);
+            const trenutna = nar?.napomena || '';
+            const nova = prompt('Napomena', trenutna);
+            if (nova === null) return;
+            spremiNapomenu(id, nova);
+        }
+
+        async function spremiNapomenu(id, napomena) {
+            await posaljiPatch(id, { napomena });
+        }
+
+        async function obrisiNarudzbu(id) {
+            if (!confirm('Obrisati narudžbu?')) return;
+            try {
+                const res = await fetch(`/api/admin/narudbe/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'x-admin-pass': adminPassword }
+                });
+                if (!res.ok) throw new Error('Brisanje nije uspjelo');
+                narudzbe = narudzbe.filter(n => n._id !== id);
+                azurirajStatuse();
+                renderNarudzbe();
+            } catch (err) {
+                console.error(err);
+                alert('Neuspjelo brisanje.');
+            }
+        }
+
+        async function posaljiPatch(id, body) {
+            try {
+                const res = await fetch(`/api/admin/narudbe/${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'x-admin-pass': adminPassword,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+                if (!res.ok) throw new Error('Ažuriranje nije uspjelo');
+                const updated = await res.json();
+                narudzbe = narudzbe.map(n => n._id === updated._id ? updated : n);
+                azurirajStatuse();
+                renderNarudzbe();
+            } catch (err) {
+                console.error(err);
+                alert('Neuspjelo spremanje izmjena.');
+            }
+        }
+
+        window.promijeniStatus = promijeniStatus;
+        window.togglePlacanje = togglePlacanje;
+        window.spremiNapomenu = spremiNapomenu;
+        window.urediNapomenu = urediNapomenu;
+
+        function odjava() {
+            adminPassword = '';
+            narudzbe = [];
+            document.getElementById('adminPass').value = '';
+            loginSection?.classList.remove('hidden');
+            dashboard?.classList.add('hidden');
+            ordersGrid.innerHTML = '';
+            emptyState.classList.add('hidden');
+            document.getElementById('statTotal').textContent = '0';
+            document.getElementById('statShipped').textContent = '0';
+            document.getElementById('statPaid').textContent = '0';
+        }
+        window.obrisiNarudzbu = obrisiNarudzbu;
+    </script>
+</body>
+</html>
