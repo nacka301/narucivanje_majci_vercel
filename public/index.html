@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thompson Shop - Limited Edition</title>
+    <title>Thompson Majice - Limited Edition</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="glass-nav" id="mainNav">
         <div class="glass-nav__inner">
-            <a href="#models" class="glass-nav__logo"><span>THOMPSON</span> SHOP</a>
+            <a href="#models" class="glass-nav__logo"><span>THOMPSON</span> MAJICE</a>
             <button class="glass-nav__toggle" id="navToggle" aria-label="Otvori navigaciju">
                 <span></span>
                 <span></span>
@@ -68,16 +68,19 @@
                         <option value="Lijepa Li Si">Lijepa Li Si</option>
                     </select>
                 </label>
-                <label>
-                    Odaberi veličinu
-                    <select id="velicina">
-                        <option value="S">S</option>
-                        <option value="M" selected>M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                        <option value="XXL">XXL</option>
-                    </select>
-                </label>
+                <div>
+                    <input type="hidden" id="velicina" value="M">
+                    <label style="font-weight: 600; color: #475569; margin-bottom: 10px; display: block;">
+                        Odaberi veličinu
+                    </label>
+                    <div class="size-selector">
+                        <div class="size-box" onclick="odaberiVelicinu(this, 'S')">S</div>
+                        <div class="size-box selected" onclick="odaberiVelicinu(this, 'M')">M</div>
+                        <div class="size-box" onclick="odaberiVelicinu(this, 'L')">L</div>
+                        <div class="size-box" onclick="odaberiVelicinu(this, 'XL')">XL</div>
+                        <div class="size-box" onclick="odaberiVelicinu(this, 'XXL')">XXL</div>
+                    </div>
+                </div>
                 <label>
                     Količina
                     <input type="number" id="kolicina" value="1" min="1" max="5">
@@ -162,6 +165,20 @@
         <p class="footer__copyright">© 2025 Tvoj Brend — Sva prava pridržana.</p>
     </footer>
 
+    <script>
+        function odaberiVelicinu(element, vrijednost) {
+            // Makni klasu 'selected' sa svih kockica
+            document.querySelectorAll('.size-box').forEach(box => {
+                box.classList.remove('selected');
+            });
+
+            // Dodaj 'selected' na ovu koju smo kliknuli
+            element.classList.add('selected');
+
+            // Ažuriraj skrivenu vrijednost koju šaljemo serveru
+            document.getElementById('velicina').value = vrijednost;
+        }
+    </script>
     <script src="app.js"></script>
 </body>
 </html>

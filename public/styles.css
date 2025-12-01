@@ -309,6 +309,42 @@ input:focus, select:focus {
     outline: 2px solid var(--accent);
 }
 
+/* Size selector - moderni kvadratni gumbi za veličine */
+.size-selector {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.size-box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    background: white;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.size-box:hover {
+    border-color: var(--accent);
+    background-color: #fff5f5;
+}
+
+.size-box.selected {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 4px 10px rgba(193, 18, 31, 0.3);
+    transform: translateY(-2px);
+}
+
 .btn {
     border-radius: 12px;
     padding: 0.9rem 1.5rem;
