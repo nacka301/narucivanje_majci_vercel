@@ -28,25 +28,108 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Google Analytics - Paste your G-tag script below -->
-    <!-- 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    -->
+                <!-- Google tag (gtag.js) -->
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-65ZGTZJWXW"></script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+
+                    gtag('config', 'G-65ZGTZJWXW');
+                </script>
     
     <!-- Vercel Analytics -->
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Thompson Majice",
+      "description": "Službena kolekcija Thompson majica - premium kvaliteta, dostava po cijeloj Hrvatskoj",
+      "url": "https://narucivanje-majci-vercel.vercel.app",
+      "image": "https://narucivanje-majci-vercel.vercel.app/majica-1/preview.jpg",
+      "priceRange": "20€",
+      "paymentAccepted": "Cash",
+      "areaServed": "HR",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Thompson Majice Kolekcija",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Thompson Majica - Gospa",
+              "description": "Crna premium majica izrađena od 100% pamuka, s posebnim printom visoke izdržljivosti",
+              "image": "https://narucivanje-majci-vercel.vercel.app/majica-1/preview.jpg",
+              "brand": {
+                "@type": "Brand",
+                "name": "Thompson Majice"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "20",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/InStock",
+                "priceValidUntil": "2025-12-31"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Thompson Majica - Ako Ne Znaš Što Je Bilo ",
+              "description": "Klasična bijela majica čistog i elegantnog dizajna, idealna za svakodnevno nošenje",
+              "image": "https://narucivanje-majci-vercel.vercel.app/majica-2/preview.jpg",
+              "brand": {
+                "@type": "Brand",
+                "name": "Thompson Majice"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "20",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/InStock",
+                "priceValidUntil": "2025-12-31"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Thompson Majica - Lijepa Li Si",
+              "description": "Urban stil i moderan kroj. Najprodavaniji model u kolekciji",
+              "image": "https://narucivanje-majci-vercel.vercel.app/majica-3/preview.jpg",
+              "brand": {
+                "@type": "Brand",
+                "name": "Thompson Majice"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "20",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/InStock",
+                "priceValidUntil": "2025-12-31"
+              }
+            }
+          }
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
     <header class="glass-nav" id="mainNav">
@@ -71,26 +154,29 @@
             <h2>Naše majice</h2>
             <p>Tri premium modela spremna za dostavu u cijelu Hrvatsku.</p>
             <div class="models__grid">
-                <article class="card card--green">
-                    <img src="./majica-1/preview.jpg" alt="Thompson Majica Gospa - Crna Premium Majica s Hrvatskim Dizajnom" class="card__image">
+                <article class="card">
+                    <img src="./majica-1/preview.jpg" alt="Thompson Majica Gospa - Crna Premium Majica s Hrvatskim Dizajnom" class="card__image" loading="lazy">
                     <h3>Gospa</h3>
                     <p class="price">20 €</p>
                     <p>Crna premium majica izrađena od 100% pamuka, s posebnim printom visoke izdržljivosti.</p>
-                    <button class="btn outline order-btn" data-model="Gospa">Naruči</button>
+                    <span class="stock-badge">📦 Ograničena količina</span>
+                    <button class="btn outline order-btn" data-model="Gospa" aria-label="Naruči Thompson majicu model Gospa">Naruči</button>
                 </article>
-                <article class="card card--blue">
-                    <img src="./majica-2/preview.jpg" alt="Thompson Majica Ako Ne Znaš Što Je Bilo Kocka - Limited Edition Bijela Majica" class="card__image">
+                <article class="card">
+                    <img src="./majica-2/preview.jpg" alt="Thompson Majica Ako Ne Znaš Što Je Bilo - Limited Edition Bijela Majica" class="card__image" loading="lazy">
                     <h3>Ako Ne Znaš Što Je Bilo Kocka</h3>
                     <p class="price">20 €</p>
                     <p>Klasična bijela majica čistog i elegantnog dizajna, idealna za svakodnevno nošenje.</p>
-                    <button class="btn outline order-btn" data-model="Ako Ne Znaš Što Je Bilo Kocka">Naruči</button>
+                    <span class="stock-badge">📦 Ograničena količina</span>
+                    <button class="btn outline order-btn" data-model="Ako Ne Znaš Što Je Bilo " aria-label="Naruči Thompson majicu model Ako Ne Znaš Što Je Bilo Kocka">Naruči</button>
                 </article>
-                <article class="card card--green">
-                    <img src="./majica-3/preview.jpg" alt="Thompson Majica Lijepa Li Si - Urban Streetwear Hrvatski Print" class="card__image">
+                <article class="card">
+                    <img src="./majica-3/preview.jpg" alt="Thompson Majica Lijepa Li Si - Urban Streetwear Hrvatski Print" class="card__image" loading="lazy">
                     <h3>Lijepa Li Si</h3>
                     <p class="price">20 €</p>
                     <p>Urban stil i moderan kroj. Najprodavaniji model u kolekciji.</p>
-                    <button class="btn outline order-btn" data-model="Lijepa Li Si">Naruči</button>
+                    <span class="stock-badge stock-badge--hot">🔥 Najprodavanija</span>
+                    <button class="btn outline order-btn" data-model="Lijepa Li Si" aria-label="Naruči Thompson majicu model Lijepa Li Si">Naruči</button>
                 </article>
             </div>
         </section>
@@ -109,15 +195,15 @@
                     <div class="model-list">
                         <div class="model-card" onclick="odaberiModel(this, 'Gospa')">
                             <span class="model-name">Gospa</span>
-                            <span class="model-desc">Classic Black Edition</span>
+                            <span class="model-desc">Vrhunska Kvaliteta</span>
                         </div>
-                        <div class="model-card" onclick="odaberiModel(this, 'Ako Ne Znaš Što Je Bilo Kocka')">
-                            <span class="model-name">Ako Ne Znaš Što Je Bilo Kocka</span>
-                            <span class="model-desc">Limited White</span>
+                        <div class="model-card" onclick="odaberiModel(this, 'Ako Ne Znaš Što Je Bilo ')">
+                            <span class="model-name">Ako Ne Znaš Što Je Bilo </span>
+                            <span class="model-desc">Vrhunska Kvaliteta</span>
                         </div>
                         <div class="model-card" onclick="odaberiModel(this, 'Lijepa Li Si')">
                             <span class="model-name">Lijepa Li Si</span>
-                            <span class="model-desc">Streetwear Style</span>
+                            <span class="model-desc">Vrhunska Kvaliteta</span>
                         </div>
                     </div>
                 </div>
@@ -135,7 +221,7 @@
                     </div>
                 </div>
                 <div>
-                    <label style="font-weight: 600; color: #475569; margin-bottom: 10px; display: block;">
+                    <label class="form-section-label">
                         Količina
                     </label>
                     <div class="quantity-wrapper">
@@ -160,25 +246,25 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="ime">
                     Ime i prezime
-                    <input type="text" id="ime" placeholder="Ime i Prezime" required>
+                    <input type="text" id="ime" name="ime" placeholder="Ime i Prezime" required aria-required="true">
                 </label>
-                <label>
+                <label for="adresa">
                     Ulica i broj
-                    <input type="text" id="adresa" placeholder="Ulica i broj" required>
+                    <input type="text" id="adresa" name="adresa" placeholder="Ulica i broj" required aria-required="true">
                 </label>
-                <label>
+                <label for="grad">
                     Grad i poštanski broj
-                    <input type="text" id="grad" placeholder="Grad i Poštanski broj" required>
+                    <input type="text" id="grad" name="grad" placeholder="Grad i Poštanski broj" required aria-required="true">
                 </label>
-                <label>
+                <label for="telefon">
                     Broj mobitela
-                    <input type="tel" id="telefon" placeholder="Broj mobitela" required>
+                    <input type="tel" id="telefon" name="telefon" placeholder="Broj mobitela" required aria-required="true">
                 </label>
-                <label class="span-2">
+                <label for="email" class="span-2">
                     Email (opcionalno)
-                    <input type="email" id="email" placeholder="Email adresa">
+                    <input type="email" id="email" name="email" placeholder="Email adresa">
                 </label>
                 <div class="order__actions span-2">
                     <button type="submit" id="btnNaruci" class="btn primary">ZAVRŠI NARUDŽBU (20 €)</button>
@@ -214,6 +300,36 @@
             </div>
         </section>
 
+        <section class="faq" id="faq">
+            <h2>Često postavljena pitanja</h2>
+            <div class="faq__grid">
+                <details class="faq__item">
+                    <summary>Kako funkcionira plaćanje pouzećem?</summary>
+                    <p>Plaćanje pouzećem znači da novac plaćaš direktno dostavljaču kada ti donese paket na adresu. Ne trebaju ti kreditne kartice niti online plaćanje.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Koliko traje dostava?</summary>
+                    <p>Tvoja narudžba stiže u roku 1-3 radna dana od potvrde. Paket šaljemo putem provjerenih kurirskih službi.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Mogu li vratiti ili zamijeniti majicu?</summary>
+                    <p>Da! Ako majica ne odgovara veličinom ili se ne sviđa, imaš pravo na povrat ili zamjenu u roku 14 dana.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Kakva je kvaliteta majica?</summary>
+                    <p>Sve majice su izrađene od 100% kvalitetnog pamuka, debljine 180-200 g/m². Print je rađen termotransfer tehnologijom za dugotrajnost.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Dostavljate li van Hrvatske?</summary>
+                    <p>Trenutno dostavljamo isključivo po Hrvatskoj. Za dostavu u inozemstvo kontaktiraj nas mailom.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Kako odabrati pravu veličinu?</summary>
+                    <p>Naše majice su standardnih veličina (S-XXL). Ako si između dvije veličine, preporučujemo uzeti veću za udobniji kroj.</p>
+                </details>
+            </div>
+        </section>
+
         <div id="successModal" class="modal hidden">
             <div class="modal__content">
                 <div class="modal__icon">
@@ -226,18 +342,39 @@
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer__brand">
-            <p class="footer__logo">Thompson Majice</p>
-            <p class="footer__tagline">Limited Collection 2025</p>
+    <footer class="site-footer">
+        <div class="footer-content">
+            
+            <div class="footer-col">
+                <h3>THOMPSON <span class="red-text">MAJICE</span></h3>
+                <p class="footer-desc">
+                    Službena Limited Edition kolekcija 2025.
+                    Premium kvaliteta i dizajn koji se nosi s ponosom.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>INFORMACIJE</h4>
+                <ul class="footer-links">
+                    <li><a href="#order">Naruči Odmah</a></li>
+                    <li><a href="#faq">Često Pitana Pitanja</a></li>
+                    <li><a href="#">Politika Privatnosti</a></li>
+                    <li><a href="#">Uvjeti Kupnje</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>TREBAŠ POMOĆ?</h4>
+                <p>Javi nam se na:</p>
+                <a href="mailto:vpsolutions.booking@gmail.com" class="contact-link">📧 vpsolutions.booking@gmail.com</a>
+                <a href="https://instagram.com/thompson_majice" class="contact-link" target="_blank" rel="noopener">📸 @thompson_majice</a>
+            </div>
+
         </div>
-        <div class="footer__links">
-            <a href="vpsolutions.booking@gmail.com">vpsolutions.booking@gmail.com</a>
-            <span>Instagram: @thompson_majice</span>
-            <a href="#">Politika privatnosti</a>
-            <a href="#">Uvjeti narudžbe</a>
+
+        <div class="footer-bottom">
+            &copy; 2025 Thompson Majice. Sva prava pridržana.
         </div>
-        <p class="footer__copyright">© 2025 Thompson Majice — Sva prava pridržana.</p>
     </footer>
 
     <!-- Cookie Consent Banner -->
@@ -272,7 +409,7 @@
             });
 
             // Dodaj 'selected' na ovu koju smo kliknuli
-            element.classList.add('active');
+            element.classList.add('selected');
 
             // Ažuriraj skrivenu vrijednost koju šaljemo serveru
             document.getElementById('velicina').value = vrijednost;
