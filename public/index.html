@@ -32,21 +32,21 @@
                 <article class="card card--green">
                     <img src="./majica-1/preview.jpg" alt="Ako Ne Znaš Što Je Bilo" class="card__image">
                     <h3>Ako Ne Znaš Što Je Bilo</h3>
-                    <p class="price">25 €</p>
+                    <p class="price">20 €</p>
                     <p>Crna premium majica izrađena od 100% pamuka, s posebnim printom visoke izdržljivosti.</p>
                     <button class="btn outline order-btn" data-model="Ako Ne Znaš Što Je Bilo">Naruči</button>
                 </article>
                 <article class="card card--blue">
                     <img src="./majica-2/preview.jpg" alt="Ako Ne Znaš Što Je Bilo Kocka" class="card__image">
                     <h3>Ako Ne Znaš Što Je Bilo Kocka</h3>
-                    <p class="price">25 €</p>
+                    <p class="price">20 €</p>
                     <p>Klasična bijela majica čistog i elegantnog dizajna, idealna za svakodnevno nošenje.</p>
                     <button class="btn outline order-btn" data-model="Ako Ne Znaš Što Je Bilo Kocka">Naruči</button>
                 </article>
                 <article class="card card--red">
                     <img src="./majica-3/preview.jpg" alt="Lijepa Li Si" class="card__image">
                     <h3>Lijepa Li Si</h3>
-                    <p class="price">25 €</p>
+                    <p class="price">20 €</p>
                     <p>Urban stil i moderan kroj. Najprodavaniji model u kolekciji.</p>
                     <button class="btn outline order-btn" data-model="Lijepa Li Si">Naruči</button>
                 </article>
@@ -55,13 +55,14 @@
 
         <section class="order" id="order">
             <div class="order__header">
-                <h2>Naruči svoj model</h2>
+                <h2>Naruči majicu</h2>
                 <p>Ispuni podatke i šaljemo ti paket u roku 24–72 sata.</p>
             </div>
             <form id="orderForm" class="order__form">
                 <label class="span-2">
-                    Odaberi model
+                    Izaberi majicu
                     <select id="model">
+                        <option value="" disabled selected>-- Odaberi model --</option>
                         <option value="Ako Ne Znaš Što Je Bilo">Ako Ne Znaš Što Je Bilo</option>
                         <option value="Ako Ne Znaš Što Je Bilo Kocka">Ako Ne Znaš Što Je Bilo Kocka</option>
                         <option value="Lijepa Li Si">Lijepa Li Si</option>
@@ -102,7 +103,7 @@
                     <input type="email" id="email" placeholder="Email adresa">
                 </label>
                 <div class="order__actions span-2">
-                    <button type="submit" id="btnNaruci" class="btn primary">NARUČI (25 €)</button>
+                    <button type="submit" id="btnNaruci" class="btn primary">NARUČI (20 €)</button>
                     <p class="order__note">Plaćanje je pouzećem prilikom preuzimanja paketa.</p>
                 </div>
             </form>

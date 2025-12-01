@@ -92,7 +92,7 @@ form.addEventListener('submit', async (e) => {
             form.reset();
             successMessage.classList.remove('hidden');
             successModal.classList.remove('hidden');
-            btn.innerText = 'NARUČI (25 €)';
+            btn.innerText = 'NARUČI (20 €)';
             btn.disabled = false;
             modalTimer = setTimeout(() => {
                 successModal.classList.add('hidden');
@@ -100,13 +100,13 @@ form.addEventListener('submit', async (e) => {
         } else {
             alert('Greška. Pokušajte ponovno.');
             btn.disabled = false;
-            btn.innerText = '🔴 NARUČI (25 €)';
+            btn.innerText = '🔴 NARUČI (20 €)';
         }
     } catch (err) {
         console.error(err);
         alert('Greška u povezivanju.');
         btn.disabled = false;
-        btn.innerText = '🔴 NARUČI (25 €)';
+        btn.innerText = '🔴 NARUČI (20 €)';
     }
 });
 
