@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thompson Majice - Limited Edition</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>THOMPSON MAJICE | Službena Limited Edition Kolekcija 2025</title>
+    <meta name="description" content="Naruči ekskluzivne Thompson majice. Visokokvalitetni pamuk, hrvatski dizajn. Dostava po cijeloj Hrvatskoj. Plaćanje pouzećem.">
+    <meta name="keywords" content="thompson majice, marko perković thompson, domoljubne majice, sinj, hrvatska, majice prodaja, thompson shop, thompson merchandise">
+    <meta name="author" content="Thompson Majice">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags (Facebook, WhatsApp) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="THOMPSON MAJICE - Limited Edition">
+    <meta property="og:description" content="Nova kolekcija je vani! Naruči svoj primjerak danas. Dostava po cijeloj Hrvatskoj.">
+    <meta property="og:image" content="https://narucivanje-majci-vercel.vercel.app/majica-1/preview.jpg">
+    <meta property="og:url" content="https://narucivanje-majci-vercel.vercel.app">
+    <meta property="og:site_name" content="Thompson Majice">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="THOMPSON MAJICE - Limited Edition">
+    <meta name="twitter:description" content="Nova kolekcija je vani! Naruči svoj primjerak danas.">
+    <meta name="twitter:image" content="https://narucivanje-majci-vercel.vercel.app/majica-1/preview.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Analytics - Paste your G-tag script below -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+    
+    <!-- Vercel Analytics -->
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
@@ -34,21 +72,21 @@
             <p>Tri premium modela spremna za dostavu u cijelu Hrvatsku.</p>
             <div class="models__grid">
                 <article class="card card--green">
-                    <img src="./majica-1/preview.jpg" alt="Gospa" class="card__image">
+                    <img src="./majica-1/preview.jpg" alt="Thompson Majica Gospa - Crna Premium Majica s Hrvatskim Dizajnom" class="card__image">
                     <h3>Gospa</h3>
                     <p class="price">20 €</p>
                     <p>Crna premium majica izrađena od 100% pamuka, s posebnim printom visoke izdržljivosti.</p>
                     <button class="btn outline order-btn" data-model="Gospa">Naruči</button>
                 </article>
                 <article class="card card--blue">
-                    <img src="./majica-2/preview.jpg" alt="Ako Ne Znaš Što Je Bilo Kocka" class="card__image">
+                    <img src="./majica-2/preview.jpg" alt="Thompson Majica Ako Ne Znaš Što Je Bilo Kocka - Limited Edition Bijela Majica" class="card__image">
                     <h3>Ako Ne Znaš Što Je Bilo Kocka</h3>
                     <p class="price">20 €</p>
                     <p>Klasična bijela majica čistog i elegantnog dizajna, idealna za svakodnevno nošenje.</p>
                     <button class="btn outline order-btn" data-model="Ako Ne Znaš Što Je Bilo Kocka">Naruči</button>
                 </article>
                 <article class="card card--green">
-                    <img src="./majica-3/preview.jpg" alt="Lijepa Li Si" class="card__image">
+                    <img src="./majica-3/preview.jpg" alt="Thompson Majica Lijepa Li Si - Urban Streetwear Hrvatski Print" class="card__image">
                     <h3>Lijepa Li Si</h3>
                     <p class="price">20 €</p>
                     <p>Urban stil i moderan kroj. Najprodavaniji model u kolekciji.</p>
@@ -202,6 +240,14 @@
         <p class="footer__copyright">© 2025 Thompson Majice — Sva prava pridržana.</p>
     </footer>
 
+    <!-- Cookie Consent Banner -->
+    <div id="cookieBanner" class="cookie-banner hidden">
+        <div class="cookie-content">
+            <p>🍪 Koristimo kolačiće za bolji rad stranice i analizu prometa.</p>
+            <button id="acceptCookies" class="cookie-btn">U REDU</button>
+        </div>
+    </div>
+
     <script>
         const CIJENA_PO_KOMADU = 20;
         let kosarica = [];
@@ -330,6 +376,23 @@
 
         // Pozovi funkciju na početku da se prikaže početna cijena
         document.addEventListener('DOMContentLoaded', azurirajCijenu);
+
+        // Cookie Banner Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const cookieBanner = document.getElementById('cookieBanner');
+            const acceptBtn = document.getElementById('acceptCookies');
+            
+            // Provjeri je li korisnik već prihvatio kolačiće
+            if (!localStorage.getItem('cookiesAccepted')) {
+                cookieBanner.classList.remove('hidden');
+            }
+            
+            // Kada klikne "U REDU"
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieBanner.classList.add('hidden');
+            });
+        });
     </script>
     <script src="app.js"></script>
 </body>
