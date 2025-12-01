@@ -59,15 +59,26 @@
                 <p>Ispuni podatke i šaljemo ti paket u roku 24–72 sata.</p>
             </div>
             <form id="orderForm" class="order__form">
-                <label class="span-2">
-                    Izaberi majicu
-                    <select id="model">
-                        <option value="" disabled selected>-- Odaberi model --</option>
-                        <option value="Gospa">Gospa</option>
-                        <option value="Ako Ne Znaš Što Je Bilo ">Ako Ne Znaš Što Je Bilo Kocka</option>
-                        <option value="Lijepa Li Si">Lijepa Li Si</option>
-                    </select>
-                </label>
+                <div class="span-2">
+                    <label style="font-weight: 600; color: #475569; margin-bottom: 10px; display: block;">
+                        Izaberi majicu
+                    </label>
+                    <input type="hidden" id="model" value="">
+                    <div class="model-list">
+                        <div class="model-card" onclick="odaberiModel(this, 'Gospa')">
+                            <span class="model-name">Gospa</span>
+                            <span class="model-desc">Classic Black Edition</span>
+                        </div>
+                        <div class="model-card" onclick="odaberiModel(this, 'Ako Ne Znaš Što Je Bilo Kocka')">
+                            <span class="model-name">Ako Ne Znaš Što Je Bilo Kocka</span>
+                            <span class="model-desc">Limited White</span>
+                        </div>
+                        <div class="model-card" onclick="odaberiModel(this, 'Lijepa Li Si')">
+                            <span class="model-name">Lijepa Li Si</span>
+                            <span class="model-desc">Streetwear Style</span>
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <input type="hidden" id="velicina" value="M">
                     <label style="font-weight: 600; color: #475569; margin-bottom: 10px; display: block;">
@@ -167,6 +178,19 @@
 
     <script>
         const CIJENA_PO_KOMADU = 20;
+
+        function odaberiModel(element, nazivModela) {
+            // Makni 'active' sa svih kartica
+            document.querySelectorAll('.model-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Dodaj 'active' na kliknutu karticu
+            element.classList.add('active');
+
+            // Spremi vrijednost u skriveno polje
+            document.getElementById('model').value = nazivModela;
+        }
 
         function odaberiVelicinu(element, vrijednost) {
             // Makni klasu 'selected' sa svih kockica

@@ -349,6 +349,52 @@ input:focus, select:focus {
     transform: translateY(-2px);
 }
 
+/* Model lista - radio kartice za odabir majice */
+.model-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.model-card {
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 15px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.model-name {
+    font-weight: bold;
+    color: #1e293b;
+    font-size: 16px;
+}
+
+.model-desc {
+    font-size: 13px;
+    color: #94a3b8;
+    font-weight: normal;
+}
+
+.model-card:hover {
+    border-color: var(--accent);
+    background-color: #fffaf0;
+}
+
+.model-card.active {
+    border-color: var(--accent);
+    background-color: #fef2f2;
+    box-shadow: 0 0 0 1px var(--accent);
+}
+
+.model-card.active .model-name {
+    color: var(--accent);
+}
+
 .btn {
     border-radius: 12px;
     padding: 0.9rem 1.5rem;
