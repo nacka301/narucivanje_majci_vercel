@@ -213,7 +213,7 @@ app.get('/api/admin/narudbe', async (req, res) => {
 });
 
 // 3. ADMIN: Ažuriraj status / plaćanje / napomenu
-app.patch('/api/admin/narudzbe/:id', async (req, res) => {
+app.patch('/api/admin/narudbe/:id', async (req, res) => {
     await connectDB();
     if (!authorize(req, res)) return;
 
@@ -252,7 +252,7 @@ app.patch('/api/admin/narudzbe/:id', async (req, res) => {
 });
 
 // 4. ADMIN: Brisanje narudžbe
-app.delete('/api/admin/narudzbe/:id', async (req, res) => {
+app.delete('/api/admin/narudbe/:id', async (req, res) => {
     await connectDB();
     if (!authorize(req, res)) return;
 
