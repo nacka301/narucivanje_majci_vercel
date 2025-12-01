@@ -275,6 +275,11 @@ app.delete('/api/admin/narudzbe/:id', async (req, res) => {
     }
 });
 
+// Explicit route for root to serve index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // Pokretanje servera lokalno ili eksport za Vercel
 if (require.main === module) {
     const PORT = process.env.PORT || 3000;
