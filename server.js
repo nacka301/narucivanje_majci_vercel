@@ -276,8 +276,8 @@ app.delete('/api/admin/narudzbe/:id', async (req, res) => {
 });
 
 // Pokretanje servera lokalno ili eksport za Vercel
-const PORT = process.env.PORT || 3000;
 if (require.main === module) {
+    const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => console.log(`Server radi na portu ${PORT}`));
 }
 
