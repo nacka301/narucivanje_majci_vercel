@@ -96,6 +96,19 @@
                     Količina
                     <input type="number" id="kolicina" value="1" min="1" max="5" oninput="azurirajCijenu()">
                 </label>
+                
+                <div class="span-2">
+                    <button type="button" id="btnDodaj" class="btn-dodaj" onclick="dodajUListu()">
+                        + DODAJ MAJICU
+                    </button>
+
+                    <div id="prikazKosarice" class="kosarica-lista" style="display:none;">
+                        <h4>Tvoja narudžba:</h4>
+                        <div id="listaStavki"></div>
+                        <input type="hidden" id="konacnaNarudzba" value="">
+                    </div>
+                </div>
+                
                 <label>
                     Ime i prezime
                     <input type="text" id="ime" placeholder="Ime i Prezime" required>
@@ -117,8 +130,8 @@
                     <input type="email" id="email" placeholder="Email adresa">
                 </label>
                 <div class="order__actions span-2">
-                    <button type="submit" id="btnNaruci" class="btn primary">NARUČI (20 €)</button>
-                    <p class="order__note">Plaćanje je pouzećem prilikom preuzimanja paketa.</p>
+                    <button type="submit" id="btnNaruci" class="btn primary">ZAVRŠI NARUDŽBU (20 €)</button>
+                    <p class="order__note">Plaćanje je pouzćem prilikom preuzimanja paketa.</p>
                 </div>
             </form>
             <p id="successMessage" class="success-msg hidden">
@@ -178,6 +191,7 @@
 
     <script>
         const CIJENA_PO_KOMADU = 20;
+        let kosarica = [];
 
         function odaberiModel(element, nazivModela) {
             // Makni 'active' sa svih kartica
@@ -199,16 +213,90 @@
             });
 
             // Dodaj 'selected' na ovu koju smo kliknuli
-            element.classList.add('selected');
+            element.classList.add('active');
 
             // Ažuriraj skrivenu vrijednost koju šaljemo serveru
             document.getElementById('velicina').value = vrijednost;
         }
 
+        function dodajUListu() {
+            // 1. Pokupi podatke
+            const model = document.getElementById('model').value;
+            const velicina = document.getElementById('velicina').value;
+            const kolicina = document.getElementById('kolicina').value || 1;
+
+            // Provjera jel sve odabrano
+            if (!model || !velicina) {
+                alert("Molimo odaberite model i veličinu!");
+                return;
+            }
+
+            // 2. Dodaj u niz
+            const stavka = {
+                id: Date.now(),
+                opis: `${model} (${velicina})`,
+                kolicina: parseInt(kolicina)
+            };
+            kosarica.push(stavka);
+
+            // 3. Osvježi prikaz
+            osvjeziPrikaz();
+            
+            // 4. Resetuj količinu na 1
+            document.getElementById('kolicina').value = 1;
+            azurirajCijenu();
+        }
+
+        function obrisiStavku(id) {
+            kosarica = kosarica.filter(s => s.id !== id);
+            osvjeziPrikaz();
+        }
+
+        function osvjeziPrikaz() {
+            const divLista = document.getElementById('listaStavki');
+            const container = document.getElementById('prikazKosarice');
+            
+            divLista.innerHTML = "";
+
+            if (kosarica.length === 0) {
+                container.style.display = 'none';
+                azurirajCijenu();
+                return;
+            }
+            
+            container.style.display = 'block';
+
+            // Generiraj HTML za svaku stavku
+            kosarica.forEach(s => {
+                divLista.innerHTML += `
+                    <div class="stavka">
+                        <span>${s.opis} x${s.kolicina}</span>
+                        <span class="btn-brisi" onclick="obrisiStavku(${s.id})">✕</span>
+                    </div>
+                `;
+            });
+
+            // PRIPREMA ZA SERVER: Spoji sve u jedan string
+            const tekstZaServer = kosarica.map(s => `${s.opis} x${s.kolicina}`).join(", ");
+            document.getElementById('model').value = tekstZaServer;
+            
+            // Ažuriraj ukupnu cijenu
+            azurirajCijenu();
+        }
+
         function azurirajCijenu() {
-            const kolicina = parseInt(document.getElementById('kolicina').value) || 1;
-            const ukupnaCijena = CIJENA_PO_KOMADU * kolicina;
-            document.getElementById('btnNaruci').textContent = `NARUČI (${ukupnaCijena} €)`;
+            let ukupnaKolicina = 0;
+            
+            if (kosarica.length > 0) {
+                // Ako ima stavki u košarici, saberi sve količine
+                ukupnaKolicina = kosarica.reduce((sum, s) => sum + s.kolicina, 0);
+            } else {
+                // Ako nema stavki, uzmi trenutnu količinu iz inputa
+                ukupnaKolicina = parseInt(document.getElementById('kolicina').value) || 1;
+            }
+            
+            const ukupnaCijena = CIJENA_PO_KOMADU * ukupnaKolicina;
+            document.getElementById('btnNaruci').textContent = `ZAVRŠI NARUDŽBU (${ukupnaCijena} €)`;
         }
 
         // Pozovi funkciju na početku da se prikaže početna cijena

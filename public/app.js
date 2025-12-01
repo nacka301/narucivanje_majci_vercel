@@ -67,18 +67,26 @@ window.addEventListener('scroll', () => {
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
+    // Provjera košarice
+    const modelValue = modelSelect.value;
+    if (!modelValue || modelValue.trim() === '') {
+        alert('Košarica je prazna! Dodajte najmanje jednu majicu.');
+        return;
+    }
+    
     btn.innerText = 'Šaljem...';
     btn.disabled = true;
 
     const narudzba = {
-        model: modelSelect.value,
+        model: modelValue,
         ime_prezime: document.getElementById('ime').value,
         adresa: document.getElementById('adresa').value,
         grad: document.getElementById('grad').value,
         email: document.getElementById('email').value || undefined,
         telefon: document.getElementById('telefon').value,
         velicina: document.getElementById('velicina').value,
-        kolicina: Number(document.getElementById('kolicina').value)
+        kolicina: kosarica.length > 0 ? kosarica.reduce((sum, s) => sum + s.kolicina, 0) : Number(document.getElementById('kolicina').value)
     };
 
     try {
@@ -90,9 +98,11 @@ form.addEventListener('submit', async (e) => {
 
         if (res.ok) {
             form.reset();
+            kosarica = [];
+            osvjeziPrikaz();
             successMessage.classList.remove('hidden');
             successModal.classList.remove('hidden');
-            btn.innerText = 'NARUČI (20 €)';
+            btn.innerText = 'ZAVRŠI NARUDŽBU (20 €)';
             btn.disabled = false;
             modalTimer = setTimeout(() => {
                 successModal.classList.add('hidden');
@@ -100,13 +110,13 @@ form.addEventListener('submit', async (e) => {
         } else {
             alert('Greška. Pokušajte ponovno.');
             btn.disabled = false;
-            btn.innerText = '🔴 NARUČI (20 €)';
+            btn.innerText = '🔴 ZAVRŠI NARUDŽBU';
         }
     } catch (err) {
         console.error(err);
         alert('Greška u povezivanju.');
         btn.disabled = false;
-        btn.innerText = '🔴 NARUČI (20 €)';
+        btn.innerText = '🔴 ZAVRŠI NARUDŽBU';
     }
 });
 

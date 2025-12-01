@@ -395,6 +395,63 @@ input:focus, select:focus {
     color: var(--accent);
 }
 
+/* Gumb za dodavanje stavke */
+.btn-dodaj {
+    width: 100%;
+    padding: 12px;
+    background-color: #334155;
+    color: white;
+    font-weight: bold;
+    border: 1px dashed #94a3b8;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-dodaj:hover {
+    background-color: #1e293b;
+    border-color: #fff;
+}
+
+/* Izgled liste */
+.kosarica-lista {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.kosarica-lista h4 {
+    margin: 0 0 10px 0;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Jedna stavka u listi */
+.stavka {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Gumb za brisanje (X) */
+.btn-brisi {
+    color: #ef4444;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px;
+}
+
 .btn {
     border-radius: 12px;
     padding: 0.9rem 1.5rem;
