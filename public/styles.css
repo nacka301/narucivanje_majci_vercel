@@ -262,9 +262,9 @@ p {
     aspect-ratio: 4 / 3;
 }
 
-.card--green { border-color: #8fc93a; }
-.card--blue { border-color: #3b82f6; }
-.card--red { border-color: #ef4444; }
+.card--green { border-color: #8fc93a !important; border-width: 2px; }
+.card--blue { border-color: #3b82f6 !important; border-width: 2px; }
+.card--red { border-color: #ef4444 !important; border-width: 2px; }
 
 .price {
     font-size: 1.5rem;
