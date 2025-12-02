@@ -225,6 +225,14 @@ p {
     text-align: center;
 }
 
+.models h2 {
+    margin-bottom: 0.5rem;
+}
+
+.models > p {
+    margin-bottom: 2rem;
+}
+
 .models__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -237,7 +245,7 @@ p {
     border-radius: 16px;
     background: var(--panel);
     border: 1px solid var(--border);
-    text-align: left;
+    text-align: center;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -581,12 +589,13 @@ input:focus, select:focus {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+    align-items: center;
 }
 
 .order__note {
     font-size: 0.9rem;
     color: var(--muted);
-    text-align: left;
+    text-align: center;
     margin: 0;
 }
 
