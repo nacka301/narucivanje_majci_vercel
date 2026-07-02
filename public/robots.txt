@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin.html
 Disallow: /api/
 
-Sitemap: https://narucivanje-majci-vercel.vercel.app/sitemap.xml
+Sitemap: https://thompsonmajica.com/sitemap.xml
