@@ -225,7 +225,8 @@ p {
     text-align: center;
 }
 
-.models h2 {
+.models h1 {
+    font-size: 1.5em;
     margin-bottom: 0.5rem;
 }
 

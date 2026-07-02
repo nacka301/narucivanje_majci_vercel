@@ -10,14 +10,17 @@
     <meta name="keywords" content="thompson majice, marko perković thompson, domoljubne majice, sinj, hrvatska, majice prodaja, thompson shop, thompson merchandise">
     <meta name="author" content="Thompson Majice">
     <meta name="robots" content="index, follow">
-    
+    <link rel="canonical" href="https://narucivanje-majci-vercel.vercel.app/">
+
     <!-- Open Graph Tags (Facebook, WhatsApp) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="THOMPSON MAJICE - Limited Edition">
     <meta property="og:description" content="Nova kolekcija je vani! Naruči svoj primjerak danas. Dostava po cijeloj Hrvatskoj.">
     <meta property="og:image" content="https://narucivanje-majci-vercel.vercel.app/majica-1/preview.jpg">
-    <meta property="og:url" content="https://narucivanje-majci-vercel.vercel.app">
+    <meta property="og:url" content="https://narucivanje-majci-vercel.vercel.app/">
     <meta property="og:site_name" content="Thompson Majice">
+    <meta property="og:locale" content="hr_HR">
+    <meta property="og:image:alt" content="Thompson majica - model Gospa">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -82,7 +85,7 @@
                 "price": "20",
                 "priceCurrency": "EUR",
                 "availability": "https://schema.org/InStock",
-                "priceValidUntil": "2025-12-31"
+                "priceValidUntil": "2026-12-31"
               }
             }
           },
@@ -102,7 +105,7 @@
                 "price": "20",
                 "priceCurrency": "EUR",
                 "availability": "https://schema.org/InStock",
-                "priceValidUntil": "2025-12-31"
+                "priceValidUntil": "2026-12-31"
               }
             }
           },
@@ -122,12 +125,70 @@
                 "price": "20",
                 "priceCurrency": "EUR",
                 "availability": "https://schema.org/InStock",
-                "priceValidUntil": "2025-12-31"
+                "priceValidUntil": "2026-12-31"
               }
             }
           }
         ]
       }
+    }
+    </script>
+
+    <!-- Structured Data (JSON-LD) - FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Kako funkcionira plaćanje pouzećem?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plaćanje pouzećem znači da novac plaćaš direktno dostavljaču kada ti donese paket na adresu. Ne trebaju ti kreditne kartice niti online plaćanje."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Koliko traje dostava?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tvoja narudžba stiže u roku 1-3 radna dana od potvrde. Paket šaljemo putem provjerenih kurirskih službi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mogu li vratiti ili zamijeniti majicu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Da! Ako majica ne odgovara veličinom ili se ne sviđa, imaš pravo na povrat ili zamjenu u roku 14 dana."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kakva je kvaliteta majica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sve majice su izrađene od 100% kvalitetnog pamuka, debljine 180-200 g/m². Print je rađen termotransfer tehnologijom za dugotrajnost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dostavljate li van Hrvatske?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Trenutno dostavljamo isključivo po Hrvatskoj. Za dostavu u inozemstvo kontaktiraj nas mailom."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kako odabrati pravu veličinu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Naše majice su standardnih veličina (S-XXL). Ako si između dvije veličine, preporučujemo uzeti veću za udobniji kroj."
+          }
+        }
+      ]
     }
     </script>
 </head>
@@ -151,7 +212,7 @@
 
     <main>
         <section class="models" id="models">
-            <h2>Naše majice</h2>
+            <h1>Naše majice</h1>
             <p>Tri premium modela spremna za dostavu u cijelu Hrvatsku.</p>
             <div class="models__grid">
                 <article class="card">
@@ -531,6 +592,6 @@
             });
         });
     </script>
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
 </body>
 </html>
